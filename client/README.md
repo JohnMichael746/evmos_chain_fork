@@ -1,7 +1,5 @@
 # Getting Started
 
-![image](https://user-images.githubusercontent.com/66811996/201771201-ae8c646b-a565-4508-8d6c-7da541265a28.png)
-
 ## Available Scripts
 
 In the project directory, you can run:
