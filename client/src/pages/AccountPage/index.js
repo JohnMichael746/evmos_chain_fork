@@ -32,7 +32,11 @@ const AccountPage = () => {
   }
 
   useEffect(() => {
-    fetchAccounts();
+    const intervalId = setInterval(fetchAccounts, 5000)
+
+    return () => {
+      clearInterval(intervalId);
+    }
   }, []);
 
   return (

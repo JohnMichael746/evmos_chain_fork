@@ -27,7 +27,7 @@ const App = () => {
             </RequireAuth>
           }
         />
-        <Route path="*" element={<Navigate to="/accounts" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );

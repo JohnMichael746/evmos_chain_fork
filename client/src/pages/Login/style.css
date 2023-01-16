@@ -1,9 +1,35 @@
-.login-container .title {
+.login-container {
+    background: url(https://wallpaperaccess.com/full/136488.jpg) no-repeat;
+    background-size: cover;
+}
+
+.login-container .center-box {
+    padding-right: 50px;
+}
+
+.login-container .form-box {
+    background: #d3a14a;
+    color: #41331e;
+}
+
+.login-container .form-box .btn {
+    background: #5f4722;
+    color: #d3a14a;
+}
+
+.login-container img {
+    width: 100%;
+    max-width: 700px;
+    padding-left: 50px;
+    padding-right: 150px;
+}
+
+.login-box .title {
     text-align: center;
     margin-bottom: 36px;
 }
 
-.login-container .server-error {
+.login-box .server-error {
     color: #ca2b26;
     font-size: 12px;
     margin-top: 10px;

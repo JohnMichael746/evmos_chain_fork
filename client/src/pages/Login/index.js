@@ -5,6 +5,8 @@ import axios from "axios";
 import Button from "../../components/Button";
 import { SERVER_URL } from "../../config";
 
+import CoinIcon from "../../assets/logo.png";
+
 import "./style.css";
 
 const Login = () => {
@@ -22,7 +24,7 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
       url: `/user/login`,
       data: {
-        address: "123123123"
+        address: "dd17fgjt2y6km387nuu6wc84wdnnzdrvy4fyzt78f"
       },
     }).then(res => {
       localStorage.setItem("user", JSON.stringify(res.data.token));
@@ -34,15 +36,17 @@ const Login = () => {
   };
 
   return (
-    <div className="center-box w-full h-full">
-      <div className="form-box login-container">
-        <h1 className="title">Digital Dollar</h1>
-        <form onSubmit={onSubmit}>
-          <Button type="submit" label={state.loading ? "Connecting..." : "Connect Wallet"} disabled={(state.loading)} />
-          <div className="server-error">{state.error && state.error}</div>
-        </form>
-      </div>
-    </div>
+    <div className="login-container">
+      <div className="center-box w-full h-full">
+        <img src={CoinIcon} alt="" />
+        <div className="form-box login-box">
+          <h1 className="title">Digital Dollar</h1>
+          <form onSubmit={onSubmit}>
+            <Button type="submit" label={state.loading ? "Connecting..." : "Connect Wallet"} disabled={(state.loading)} />
+            <div className="server-error">{state.error && state.error}</div>
+          </form>
+        </div>
+      </div></div>
   );
 };
 
