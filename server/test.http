@@ -1,0 +1,24 @@
+POST http://localhost:5000/api/v1/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "address": "123123123"
+}
+
+###
+POST http://localhost:5000/api/v1/user/logout HTTP/1.1
+
+###
+GET http://localhost:5000/api/v1/account/get_all HTTP/1.1
+
+###
+GET http://localhost:5000/api/v1/account/filter/123 HTTP/1.1
+
+###
+POST http://localhost:5000/api/v1/account/update/6 HTTP/1.1
+content-type: application/json
+Authorization: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzM5MzMyMzAsImlzcyI6IjEifQ.oLPjwGvC0hnSpSD8Qtv7MkPULRvmy1qxtL8bJOUcDm8
+
+{
+    "status": 1
+}

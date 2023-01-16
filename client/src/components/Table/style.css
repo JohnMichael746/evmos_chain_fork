@@ -1,0 +1,35 @@
+.table-container .btn {
+    width: fit-content;
+    height: 28px;
+    background: transparent;
+    color: #0077ff;
+    padding: 2px;
+    font-size: 12px;
+}
+
+.table-container .btn:hover {
+    text-decoration: underline;
+}
+
+.table-container .btn-accept:hover {
+    color: #37a308;
+}
+
+.table-container .btn-reject:hover {
+    color: #ff5500;
+}
+
+.table-container td {
+    padding: 3px !important;
+    padding-left: 15px !important;
+}
+
+.table-container .divider {
+    color: #ddd;
+    padding: 0 10px;
+}
+
+.table-container .ant-segmented {
+    background-color: #ddd;
+    padding: 3px;
+}

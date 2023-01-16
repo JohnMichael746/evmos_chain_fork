@@ -1,0 +1,21 @@
+.todo-item {
+    height: 40px;
+    display: flex;
+}
+
+.todo-item p {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.todo-item .btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-item .btn {
+    margin: 0 5px;
+    padding: 0;
+}

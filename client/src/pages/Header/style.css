@@ -1,0 +1,50 @@
+.header-container header {
+    font-size: 16px;
+}
+
+.header-container header .logo {
+    color: #BF8333;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header-container header img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.header-container nav {
+    padding-left: 30px;
+}
+
+.header-container nav a {
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 10px;
+    border-radius: 100px;
+    margin-right: 10px;
+}
+
+.header-container nav a.active {
+    color: white;
+    background-color: #BF8333;
+}
+
+.header-container nav a:hover {
+    color: white;
+    background-color: #e4c9a6;
+}
+
+.header-container .btn-logout {
+    min-width: 80px;
+}
+
+.header-container .btn-change-pwd {
+    min-width: 140px;
+}
+
+.header-container .search-box {
+    min-width: 250px;
+}

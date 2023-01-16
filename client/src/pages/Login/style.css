@@ -1,0 +1,10 @@
+.login-container .title {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.login-container .server-error {
+    color: #ca2b26;
+    font-size: 12px;
+    margin-top: 10px;
+}
