@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Table from "../../components/Table";
 import Header from "../Header";
@@ -9,23 +9,30 @@ import { SERVER_URL } from "../../config";
 const AccountPage = () => {
   const [data, setData] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const fetchAccounts = () => {
-    axios({
-      baseURL: SERVER_URL,
-      method: "get",
-      headers: { "Content-Type": "application/json" },
-      url: "/account/get_all"
-    }).then(res => {
-      const results = res.data.data.sort((a, b) => a.id - b.id).map((row, index) => ({
-        key: row.id,
-        index: index + 1,
-        ...row
-      }))
+  const fetchAccounts = useCallback(() => {
+    if (!loading) {
+      setLoading(true);
+      axios({
+        baseURL: SERVER_URL,
+        method: "get",
+        headers: { "Content-Type": "application/json" },
+        url: "/account/get_all"
+      }).then(res => {
+        const results = res.data.data.sort((a, b) => a.id - b.id).map((row, index) => ({
+          key: row.id,
+          index: index + 1,
+          ...row
+        }))
 
-      setData(results);
-    })
-  }
+        setData(results);
+        setLoading(false);
+      }).catch(err => {
+        setLoading(false);
+      })
+    }
+  }, [loading]);
 
   const onSearch = (keyword) => {
     setKeyword(keyword);
@@ -37,13 +44,17 @@ const AccountPage = () => {
     return () => {
       clearInterval(intervalId);
     }
-  }, []);
+  }, [fetchAccounts]);
 
   return (
     <div className="form-container account-page-container">
       <Header active="accounts" onSearch={onSearch} />
       <main>
-        <Table data={data.filter(d => keyword ? d.address.includes(keyword) : true)} fetchData={fetchAccounts} />
+        <Table
+          data={data.filter(d => keyword ? d.address.includes(keyword) : true)}
+          fetchData={fetchAccounts}
+          fetching={loading}
+        />
       </main>
     </div>
   );

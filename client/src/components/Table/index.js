@@ -1,12 +1,13 @@
 import { Segmented, Divider, Table, Tag } from 'antd';
 import axios from 'axios';
+import { TailSpin } from 'react-loader-spinner';
 import { useState } from 'react';
 import { SERVER_URL } from '../../config';
 import Button from '../Button';
 
 import "./style.css";
 
-const TableList = ({ data, fetchData }) => {
+const TableList = ({ data, fetchData, fetching }) => {
     const columns = [
         {
             title: '#',
@@ -36,7 +37,7 @@ const TableList = ({ data, fetchData }) => {
             dataIndex: 'status',
             render: (_, { created_at }) => (
                 <div>
-                    {created_at}
+                    {formatTime(created_at)}
                 </div>
             ),
         },
@@ -46,7 +47,7 @@ const TableList = ({ data, fetchData }) => {
             dataIndex: 'status',
             render: (_, { updated_at }) => (
                 <div>
-                    {updated_at}
+                    {formatTime(updated_at)}
                 </div>
             ),
         },
@@ -63,7 +64,17 @@ const TableList = ({ data, fetchData }) => {
         },
     ];
 
+    const [loading, setLoading] = useState(false);
+    const [filterOption, setFilterOption] = useState('All');
+    const [selected, setSelected] = useState([]);
+
+    const formatTime = (time) => {
+        const date = new Date(Date.parse(time))
+        return date.toLocaleString();
+    }
+
     const onAccept = id => {
+        setLoading(true);
         const token = JSON.parse(localStorage.getItem('user'));
         axios({
             baseURL: SERVER_URL,
@@ -77,10 +88,14 @@ const TableList = ({ data, fetchData }) => {
             url: `/account/update/${id}`
         }).then(res => {
             fetchData();
+            setLoading(false);
+        }).catch(err => {
+            setLoading(false);
         })
     };
 
     const onReject = id => {
+        setLoading(true);
         const token = JSON.parse(localStorage.getItem('user'));
         axios({
             baseURL: SERVER_URL,
@@ -94,6 +109,9 @@ const TableList = ({ data, fetchData }) => {
             url: `/account/update/${id}`
         }).then(res => {
             fetchData();
+            setLoading(false);
+        }).catch(err => {
+            setLoading(false);
         })
     };
 
@@ -109,9 +127,6 @@ const TableList = ({ data, fetchData }) => {
         selected.map(id => onReject(id));
     }
 
-    const [filterOption, setFilterOption] = useState('All');
-    const [selected, setSelected] = useState([]);
-
     return (
         <div className='table-container'>
             <div className='d-flex align-items-center justify-content-between'>
@@ -123,6 +138,14 @@ const TableList = ({ data, fetchData }) => {
                         onChange={setFilterOption}
                     />
                 </div>
+                <TailSpin
+                    height="30"
+                    width="30"
+                    color="#0077ff"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    visible={loading || fetching}
+                />
                 <div>
                     <span>{selected.length} items selected</span>
                     <span className='divider'>|</span>

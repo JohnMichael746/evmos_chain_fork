@@ -64,6 +64,15 @@ p {
     margin-right: 10px;
 }
 
+.px-10px {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.pl-10px {
+    padding-right: 10px;
+}
+
 ul {
     list-style: none;
     margin: 0;

@@ -14,5 +14,5 @@ type Account struct {
 	Address   string 	`json:"address"`
 	Status    int 		`json:"status"`
 	CreatedAt time.Time	`json:"created_at"`
-	UpdatedAt time.Time `json:"deleted_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
