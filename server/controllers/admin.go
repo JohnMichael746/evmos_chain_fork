@@ -11,7 +11,6 @@ import (
 	"github.com/khrees2412/convas/models"
 )
 
-
 type Data struct {
 	Address string `json:"address"`
 }
@@ -23,7 +22,7 @@ func Login(c *fiber.Ctx) error {
 		return err
 	}
 
-	var user models.User
+	var user models.Admin
 
 	database.DB.Where("address = ?", data.Address).First(&user)
 

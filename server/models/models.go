@@ -4,7 +4,7 @@ import (
     "time"
 )
 
-type User struct {
+type Admin struct {
 	Id       uint   `json:"id"`
 	Address  string `json:"address"`
 }

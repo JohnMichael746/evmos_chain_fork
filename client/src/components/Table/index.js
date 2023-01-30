@@ -2,6 +2,9 @@ import { Segmented, Divider, Table, Tag } from 'antd';
 import axios from 'axios';
 import { TailSpin } from 'react-loader-spinner';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { SERVER_URL } from '../../config';
 import Button from '../Button';
 
@@ -69,6 +72,8 @@ const TableList = ({ data, fetchData, fetching }) => {
     const [selected, setSelected] = useState([]);
 
     const formatTime = (time) => {
+        if (Date.parse(time) < 0) return "";
+
         const date = new Date(Date.parse(time))
         return date.toLocaleString();
     }
@@ -90,6 +95,7 @@ const TableList = ({ data, fetchData, fetching }) => {
             fetchData();
             setLoading(false);
         }).catch(err => {
+            toast(`Connection Error.`);
             setLoading(false);
         })
     };
@@ -174,6 +180,7 @@ const TableList = ({ data, fetchData, fetching }) => {
                     }
                 })}
             />
+            <ToastContainer />
         </div>
     )
 };
